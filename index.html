@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="task">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Task</title>
+    <link rel="stylesheet" href="src/bootstrap.min.css">
+    <link rel="stylesheet" href="src/bootstrap-theme.min.css">
+    
+</head>
+
+<body ng-controller="myCtrl">
+    <div class="container">
+        <div class="panel">
+            <h1>Plan your day!</h1>
+            <p class="lead">User:Oleh Pavliv . Count of task {{count}}</p>
+        </div>
+        
+        <div class="panel">
+            <form action="#" name="addTask" class="form-inline">
+                <input type="text" class="form-control" placeholder="Your Task" ng-model="task">
+                <button type="button" class="btn - btn-default" ng-click="addItem()" >Add</button>
+            </form>
+        </div>
+        
+        <div class="panel">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Deleting</th>
+                        <th>Task</th>
+                        <th>Check</th>
+                        <th>Done/In Progress</th>
+                        <th>Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat ="item in taskList">
+                        <td>
+                            <button type="button" class="btn btn-danger" ng-click="delItem($index)">Delete</button>
+                        </td>
+                        <td>
+                            {{item.task}}
+                        </td>
+                        <td>
+                            <input type="checkbox" ng-model="item.progress">
+                        </td>
+                        <td>
+                            <span style="{{setStyle(item.progress)}}">
+                                {{showText(item.progress)}}
+                            </span>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-primary" ng-click="editTask($index)">Edit</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+           
+        </div>
+        <div class="panel" style="float:right" ng-show="res">
+            <form action="#" class="form-inline">
+                <input type="text" class="form-control" ng-model="item" id="item">
+                <button type="button" class="btn btn-success" ng-click="saveItem()">Save</button>
+            </form>
+        </div>    
+    </div>
+    <script src="src/angular.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
